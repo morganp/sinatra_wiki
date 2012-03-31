@@ -54,7 +54,11 @@ module Sinatra
 end
 
 def auth
-  authenticate_or_request_with_http_basic do |user_name, password|
-    user_name == Sinatra.options.username && Digest::SHA1.hexdigest(password) == Sinatra.options.password
-  end if Sinatra.options.use_auth
+  if settings.use_auth
+    authenticate_or_request_with_http_basic do |user_name, password|
+      user_name == settings.username && Digest::SHA1.hexdigest(password) == settings.password
+    end
+  else 
+    true
+  end
 end
