@@ -11,9 +11,8 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 * rdiscount
 * thin
 * haml
-
-## Other dependencies
-* sinatra-cache submodule (git submodule update --init)
+* activesupport
+* sinatra-cache
 
 ## Usage
 

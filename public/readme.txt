@@ -10,6 +10,8 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 * erb
 * rdiscount
 * thin
+* activesupport
+* sinatra-cache
 
 
 ## Usage
