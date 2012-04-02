@@ -36,8 +36,6 @@ get '/:slug' do
   if @page.is_new
     redirect "/#{@page.name}/edit"
   else
-    @content = @page.html
-    #cache erb :page
     erb :page
   end
 end
