@@ -91,7 +91,18 @@ end
     )
     redirect "/#{nice_title}"
   end
-
+  
+  put '/:slug/?' do
+    auth
+    nice_title = Slugalizer.slugalize(params[:title])
+    @page      = Page.find_by_url( params[:slug] )
+    @page.url  = nice_title
+    @page.body = params[:body]
+    @page.save
+    redirect "/#{nice_title}"
+  end
+    
+    
   get '/base.css' do
     #cache sass :base
     sass :base
