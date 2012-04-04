@@ -1,6 +1,6 @@
 #Sinatra Wiki
 
-%w(rubygems sinatra erb rdiscount thin yaml digest/sha1 haml).each do |lib|
+%w(rubygems sinatra erb rdiscount thin yaml digest/sha1 haml active_record sass).each do |lib|
   require lib
 end
 
