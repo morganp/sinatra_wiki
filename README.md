@@ -11,11 +11,15 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 * rdiscount
 * thin
 * haml
+* sass
 * activesupport
 * sinatra-cache
 
 ## Usage
 
+    $ gem install bundler
+    $ bundle install
+    $ rake db:migrate_devel or rake db:migrate 
     $ ruby sinatra_wiki.rb
 
 Then open a browser in http://0.0.0.0:4567/
