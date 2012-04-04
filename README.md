@@ -3,7 +3,7 @@
 sinatra\_wiki is a minimal wiki, using Ruby and Sinatra.  
 Now on [GitHub Pages][githubpages].
 
-[githubpages]: http://morganp.heroku.com/sinatra_wiki 
+[githubpages]: http://morganp.github.com/sinatra_wiki 
 
 ## Usage
 
