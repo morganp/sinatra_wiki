@@ -1,12 +1,12 @@
 <h1>Editing <%= @page.name %></h1>
 
-<form method="post" action="/<%=page.url%>" >
-  <input name="_method" type="hidden" value="<% if @new.nil?%>put<%else%>post<%end%>" />
+<form method="post" action="/<%=@page.url%>" >
+  <input name="_method" type="hidden" value="<% if @new%>post<%else%>put<%end%>" />
    
   <input type="text" name="title" value="<%= @page.name %>" id="title" />
   <br>
   <textarea name="body" rows="40" cols="100" style="font-family: Consolas; font-size: 13px"><%= @page.body %></textarea>
   <br>
-  <input type="submit" name="Enviar" value="<% if @new.nil? %>Update<% else %>Create<% end %>" id="Enviar" accesskey="s" />
+  <input type="submit" name="Enviar" value="<% if @new %>Create<% else %>Update<% end %>" id="Enviar" accesskey="s" />
   <a href="/<%= @page.name %>" accesskey="c">Cancel</a>
 </form>
