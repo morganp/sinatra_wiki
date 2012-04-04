@@ -16,94 +16,90 @@ end
 Dir[File.dirname(__FILE__) + '/lib/models/*.rb'].each {|file| require file }
 
 configure :development do
-  %x(rake expire_cache)
-  set :cache_enabled, false
+  # %x(rake expire_cache)
+  #set :cache_enabled, false
+  set 'analytics', false
+
+  ActiveRecord::Base.establish_connection(
+    :adapter   => 'sqlite3',
+    :pool      => 25,
+    :database  => './db/devel.db'
+  )
 end
 
-    configure :development do
-      # %x(rake expire_cache)
-      #set :cache_enabled, false
-      set 'analytics', false
-      
-      ActiveRecord::Base.establish_connection(
-        :adapter   => 'sqlite3',
-        :database  => './db/devel.db'
-      )
-    end
-    
-    configure :production do
-      set 'analytics', true
-      
-      db = ENV["DATABASE_URL"]
-      if db.match(/postgres:\/\/(.*):(.*)@(.*)\/(.*)/) 
-        username = $1
-        password = $2
-        hostname = $3
-        database = $4
+configure :production do
+  set 'analytics', true
 
-        ActiveRecord::Base.establish_connection(
-          :adapter  => 'postgresql',
-          :host     => hostname,
-          :username => username,
-          :password => password,
-          :database => database
-        )
-      end
-    end
+  db = ENV["DATABASE_URL"]
+  if db.match(/postgres:\/\/(.*):(.*)@(.*)\/(.*)/) 
+    username = $1
+    password = $2
+    hostname = $3
+    database = $4
 
-  before do
-    content_type 'text/html', :charset => 'utf-8'
-    #@page = Page.find_by_url("home") # Default page
-  end
-
-  get '/' do
-    @pages = Page.all 
-    erb :home
-  end
-
-  get '/:slug' do
-    @page = Page.find_by_url(params[:slug])
-    if @page.nil?
-      redirect "/#{params[:slug]}/edit"
-    else
-      erb :page
-    end
-  end
-
-  get '/:slug/edit' do
-    auth
-    @page = Page.find_by_url( params[:slug] )
-    if @page.nil?
-      @page = Page.new(
-        :url => params[:slug]
-      )
-    end
-
-    erb :edit
-  end
-
-  post '/:slug/edit' do
-    auth
-    nice_title = Slugalizer.slugalize(params[:title])
-    @page = Page.create(
-     :url  => nice_title,
-     :body => params[:body]
+    ActiveRecord::Base.establish_connection(
+      :adapter  => 'postgresql',
+      :host     => hostname,
+      :username => username,
+      :password => password,
+      :database => database
     )
-    redirect "/#{nice_title}"
   end
-  
-  put '/:slug/?' do
-    auth
-    nice_title = Slugalizer.slugalize(params[:title])
-    @page      = Page.find_by_url( params[:slug] )
-    @page.url  = nice_title
-    @page.body = params[:body]
-    @page.save
-    redirect "/#{nice_title}"
+end
+
+before do
+  content_type 'text/html', :charset => 'utf-8'
+end
+
+get '/' do
+  @pages = Page.all 
+  erb :home
+end
+
+get '/base.css' do
+  sass :'stylesheets/base'
+end
+
+get '/:slug' do
+  @page = Page.find_by_url(params[:slug])
+  if @page.nil?
+    redirect "/#{params[:slug]}/edit"
+  else
+    erb :page
   end
-    
-    
-  get '/base.css' do
-    #cache sass :base
-    sass :base
+end
+
+get '/:slug/edit' do
+  auth
+  @page = Page.find_by_url( params[:slug] )
+  @new  = @page.nil? 
+  if @new
+    @page = Page.new(
+      :url => params[:slug]
+    )
   end
+
+  erb :edit
+end
+
+post '/:slug/?' do
+  auth
+  nice_title = Slugalizer.slugalize(params[:title])
+  @page = Page.create(
+    :url  => nice_title,
+    :body => params[:body]
+  )
+  redirect "/#{nice_title}"
+end
+
+put '/:slug/?' do
+  auth
+  nice_title = Slugalizer.slugalize(params[:title])
+  @page      = Page.find_by_url( params[:slug] )
+  @page.url  = nice_title
+  @page.body = params[:body]
+  @page.save
+  redirect "/#{nice_title}"
+end
+
+
