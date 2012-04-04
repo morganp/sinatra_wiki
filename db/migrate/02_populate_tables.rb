@@ -19,13 +19,17 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 * erb
 * maruku
 * thin
+* haml
+* sass
 * activesupport
 * sinatra-cache
 
 
 ## Usage
 
-    $ gem install bundler
+     $ git clone git://github.com/morganp/sinatra_wiki.git
+    $ cd sinatra_wiki
+    $ gem install bundler     # If not in your global gemset
     $ bundle install
     $ rake db:migrate_devel or rake db:migrate  
     $ ruby sinatra_wiki.rb

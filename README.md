@@ -17,7 +17,9 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 
 ## Usage
 
-    $ gem install bundler
+    $ git clone git://github.com/morganp/sinatra_wiki.git
+    $ cd sinatra_wiki
+    $ gem install bundler     # If not in your global gemset
     $ bundle install
     $ rake db:migrate_devel or rake db:migrate 
     $ ruby sinatra_wiki.rb
@@ -25,3 +27,7 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 Then open a browser in http://0.0.0.0:4567/
 
 To create a page, just type the URL for it (the URL is the command line, baby :)
+
+## License 
+
+See the LICENSE file
