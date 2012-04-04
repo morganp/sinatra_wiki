@@ -17,7 +17,7 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 * rubygems
 * sinatra
 * erb
-* rdiscount
+* maruku
 * thin
 * activesupport
 * sinatra-cache

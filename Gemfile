@@ -4,7 +4,7 @@ source :rubygems
 #gemspec
 #gem "heroku",        "~>2"
 gem "sinatra",        "~>1" 
-gem "rdiscount",      "~>1"
+gem "maruku",         "~>0.6"
 gem "thin",           "~>1"
 gem "haml",           "~>3"
 gem "sass",           "~>3"
