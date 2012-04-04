@@ -1,19 +1,9 @@
 # sinatra\_wiki
 
-sinatra\_wiki is the minimal expression of a wiki.
+sinatra\_wiki is a minimal wiki, using Ruby and Sinatra.  
+Now on [GitHub Pages][githubpages].
 
-It uses Sinatra.rb, and is being built as a learning experiment.
-
-## Required gems
-* rubygems
-* sinatra
-* erb
-* maruku
-* thin
-* haml
-* sass
-* activesupport
-* sinatra-cache
+[githubpages]: http://morganp.heroku.com/sinatra_wiki 
 
 ## Usage
 
@@ -24,9 +14,8 @@ It uses Sinatra.rb, and is being built as a learning experiment.
     $ rake db:migrate_devel or rake db:migrate 
     $ ruby sinatra_wiki.rb
 
-Then open a browser in http://0.0.0.0:4567/
-
-To create a page, just type the URL for it (the URL is the command line, baby :)
+Then open a browser in http://0.0.0.0:4567/  
+To create a page, just type the URL 
 
 ## License 
 
