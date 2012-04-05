@@ -1,5 +1,5 @@
 require 'rubygems'
-require './app'
+require './sinatra_wiki'
 
 run SinatraWiki::App
 
