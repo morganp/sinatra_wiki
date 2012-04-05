@@ -1,0 +1,5 @@
+<h2>Page list</h2>
+
+<% @pages.each do |page| %>
+  <li><a href="/<%= page.url %>"><%= page.url %></a></li>
+<% end %>
