@@ -1,6 +1,6 @@
 #Sinatra Wiki
 
-%w(rubygems sinatra erb maruku thin yaml digest/sha1 haml active_record sass).each do |lib|
+%w(rubygems sinatra/base erb maruku thin yaml digest/sha1 haml active_record sass).each do |lib|
   require lib
 end
 
