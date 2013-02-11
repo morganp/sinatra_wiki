@@ -30,6 +30,27 @@ module SinatraWiki
     end
 
 
+    helpers do
+      def protected!
+        unless authorized?
+          response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
+          throw(:halt, [401, "Not authorized\n"])
+        end
+      end
+
+      def authorized?
+        # Auth turned on in config.yml
+        if settings.use_auth
+          @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+          @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [settings.username, settings.password]
+        else 
+          true
+        end
+      end
+    end
+
+
+
     configure :development do
       set 'analytics', false
 
@@ -65,7 +86,7 @@ module SinatraWiki
     end
 
     get '/:slug/edit' do
-      auth
+      protected!
       @page = Page.find_by_url( params[:slug] )
       @new  = @page.nil? 
       @page = Page.new( :url => params[:slug] ) if @new
@@ -74,7 +95,7 @@ module SinatraWiki
     end
 
     post '/:slug/?' do
-      auth
+      protected!
       nice_title = Slugalizer.slugalize(params[:title])
       @page      = Page.create(
         :url  => nice_title,
@@ -84,7 +105,7 @@ module SinatraWiki
     end
 
     put '/:slug/?' do
-      auth
+      protected!
       nice_title = Slugalizer.slugalize(params[:title])
       @page      = Page.find_by_url( params[:slug] )
       @page.url  = nice_title
