@@ -21,6 +21,7 @@ It uses Sinatra.rb, and is being built as a learning experiment.
 * thin
 * haml
 * sass
+* activerecord
 * activesupport
 * sinatra-cache
 

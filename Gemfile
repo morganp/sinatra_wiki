@@ -8,8 +8,8 @@ gem "maruku",         "~>0.6"
 gem "thin",           "~>1"
 gem "haml",           "~>3"
 gem "sass",           "~>3"
-gem "activerecord",   "~>3"
-gem "active_support", "~>3"
+gem "activerecord",   '>= 3.2.1', '< 4.0'
+gem "activesupport", "~>3"
 gem "sinatra-cache"
 
 group :development do
