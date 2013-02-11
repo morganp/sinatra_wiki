@@ -17,6 +17,29 @@ Now on [GitHub Pages][githubpages].
 Then open a browser in http://0.0.0.0:4567/  
 To create a page, just type the URL 
 
+## Heroku
+
+    $ heroku create
+
+Heroku apps no longer come setup with a database. To try out this app you will have to at least setup a FREE dev database.
+
+    $ heroku addons:add heroku-postgresql:dev
+        Adding heroku-postgresql:dev on yourherokuapp... done, v14 (free)
+        Attached as HEROKU_POSTGRESQL_BRONZE_URL
+
+Make HEROKU_POSTGRESQL_BRONZE_URL available as DATABASE_URL
+
+    $ heroku pg:promote HEROKU_POSTGRESQL_RED_URL
+    Promoting HEROKU_POSTGRESQL_RED_URL to DATABASE_URL... done
+
+Deploy App:
+
+    $ git push heroku master
+
+Run DB Migration:
+
+    heroku run rake db:migrate
+
 ## License 
 
 See the LICENSE file
