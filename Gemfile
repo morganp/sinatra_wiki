@@ -1,8 +1,6 @@
 source :rubygems
 #If this is a gem 
 #Normal gems go in app.gemspec
-#gemspec
-gem "heroku",         "~>2"
 gem "sinatra",        "~>1" 
 gem "maruku",         "~>0.6"
 gem "thin",           "~>1"
