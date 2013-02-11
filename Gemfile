@@ -11,6 +11,6 @@ gem "activesupport", "~>3"
 gem "sinatra-cache"
 
 group :development do
-  gem "sqlite3-ruby", "~>1"
+  gem "sqlite3", "~>1"
 end
 
