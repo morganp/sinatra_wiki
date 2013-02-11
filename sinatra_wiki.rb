@@ -10,7 +10,7 @@ end
 
 
 module SinatraWiki
-  VERSION = '0.2.0'
+  VERSION = '0.3.0'
     
   ## Load Models
   Dir[File.dirname(__FILE__) + '/lib/models/*.rb'].each {|file| require file }
