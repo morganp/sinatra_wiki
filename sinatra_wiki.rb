@@ -42,22 +42,7 @@ module SinatraWiki
 
     configure :production do
       set 'analytics', true
-
-      db = ENV["DATABASE_URL"]
-      if db.match(/postgres:\/\/(.*):(.*)@(.*)\/(.*)/) 
-        username = $1
-        password = $2
-        hostname = $3
-        database = $4
-
-        ActiveRecord::Base.establish_connection(
-          :adapter  => 'postgresql',
-          :host     => hostname,
-          :username => username,
-          :password => password,
-          :database => database
-        )
-      end
+      ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
     end
 
     before do
