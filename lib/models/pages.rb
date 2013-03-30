@@ -9,7 +9,7 @@ class Page < ActiveRecord::Base
   end
   
   def html
-    Maruku.new(markdown).to_html.gsub(/\[\[(\w+)\]\]/,'<a href="\1">\1</a>').gsub(/([A-Z]+)([a-z]+)([A-Z]+)\w+/,'<a href="\0">\0</a>')
+    return Maruku.new(markdown).to_html
   end
   
   def content= txt
